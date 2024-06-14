@@ -52,7 +52,7 @@ On représente un casse-tête d'exemple en Prolog par un fait ayant la forme `pu
 Le casse-tête d'exemple se représente donc par :
 
 ```prolog
-puzzle(exemple, [
+puzzle(example, [
   [1, 0, 0, 3],
   [0, 0, 0, 0],
   [0, 0, 0, 0],
@@ -102,20 +102,13 @@ bridge(1, (3, 0), (0, 0)) % est représenté de droite à gauche
 bridge(1, (3, 3), (3, 0)) % est représenté de bas en haut
 ```
 
-## Structure du fichier `tp3.pl` et suite de tests
+## Structure du fichier `tp3.pl`
 
 Le fichier [tp3.pl](tp3.pl) contient la liste des relations que vous devez définir.
 Les relation à compléter sont annotées avec la ligne `TODO: à compléter`, suivit d'un `fail.`. Vous pouvez ajouter des relations supplémentaires ainsi qu'étendre les relations à définir sur plusieurs clauses.
 Les relations à définir sont décrites dans la suite de ce document.
 
-Pour certaines des relations, vous avez une suite de test qui est définie pour vous aider à valider votre implémentation. Ces suites de tests vous serviront de spécification pour votre implémentation.
-
-Pour lancer la suite de test, par exemple la suite `puzzle_valid` qui teste la relation `puzzle_valid/1`, vous pouvez lancer ceci depuis `swipl` :
-
-```prolog
-?- [tp3].
-?- run_tests(puzzle_valid).
-```
+Le fichier `correction.pl` sera utilisé pour l'évaluation des fonctionnalités. Il contient une suite de tests que vous pouvez utiliser comme spécification des relations à implémenter.
 
 ## Vérifier la validité d'un casse-tête : `puzzle_valid/1`
 
@@ -168,11 +161,15 @@ La relation `validate/2` est utilisée comme ceci : `validate(Puzzle, Solution)
 
 ## Résoudre un casse-tête
 
-Finalement, il faut s'assurer que l'on peut utiliser la relation `validate/2` pour résoudre un casse-tête. En faisant une requête comme `puzzle(example, Puzzle), validate(Puzzle, Solution)`, votre implémentation devrait pouvoir générer la solution attendue.
+Finalement, il faut s'assurer que l'on peut utiliser la relation `validate/2` pour résoudre un casse-tête. En faisant une requête comme `puzzle(trivial1, Puzzle), validate(Puzzle, Solution)`, votre implémentation devrait pouvoir générer la solution attendue.
 
-TODO: mettre en place des puzzles plus complexes
+Il est possible que votre implémentation initiale de `validate/2` prenne trop de temps à inférer les solutions. Il faudra alors expérimenter pour l'optimiser.
 
 ## Évaluation
+### Contraintes
+
+Vous devez implémenter votre solution dans le fichier `tp3.ml`. La seule bibliothèque non standard autorisée est `clpfd`, mais il n'est pas obligatoire de l'utiliser.
+
 ### Fonctionnalités
 
 Votre programme sera évalué en terme de fonctionnalités sur les trois critères suivants.
@@ -223,4 +220,3 @@ Vérifiez bien les éléments suivants lors de votre remise :
 - [ ] Le code est documenté
 - [ ] Les tests passent en lançant `run_tests.` après avoir chargé votre fichier dans `swipl`
 - [ ] Le script de correction fonctionne comme attendu (cf. plus haut)
-
