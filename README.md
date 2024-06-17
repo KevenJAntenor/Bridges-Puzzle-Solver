@@ -28,15 +28,15 @@ Par exemple, avec `N = 4`, un casse-tête pourrait être le suivant, où `~` rep
 2 ~ ~ 4
 ```
 
-Le but est de connecter les îles entre elles avec des ponts qui peuvent soit être des *ponts simples*, soit être des *ponts doubles*. Le nombre indiqué dans chaque île indique combien de connexion celle-ci doit avoir. Les ponts simples ont un poids de 1 en terme de connexion, et les ponts doubles ont un poids de 2. Dans notre exemple, l'île `1` donc avoir une connexion avec un pont simple, alors que l'île `2` peut avoir une connexion avec deux ponts simples, ou une connexion avec un pont double. Il ne peut pas y avoir de ponts plus grands que des ponts doubles, et les ponts ne peuvent pas se croiser.
+Le but est de connecter les îles entre elles avec des ponts qui peuvent soit être des *ponts simples*, soit être des *ponts doubles*. Le nombre indiqué dans chaque île indique combien de connexions celle-ci doit avoir. Les ponts simples ont un poids de 1 en terme de connexion, et les ponts doubles ont un poids de 2. Dans notre exemple, l'île `1` donc avoir une connexion avec un pont simple, alors que l'île `2` peut avoir une connexion avec deux ponts simples, ou une connexion avec un pont double. Il ne peut pas y avoir de ponts plus grands que des ponts doubles, et les ponts ne peuvent pas se croiser.
 
-Une solution pour notre exemple serait la suivante, où `-` représente un pont simple, et `=` et `║` représentent un pont double :
+Une solution pour notre exemple serait la suivante, où `─` représente un pont simple, et `═` et `║` représentent un pont double :
 
 ```
-1 - - 3
+1─────3
 ~ ~ ~ ║
 ~ ~ ~ ║
-2 = = 4
+2═════4
 ```
 
 Vous devez écrire un programme Prolog qui permet de vérifier des solutions et résoudre des casse-tête de ce type.
@@ -80,15 +80,15 @@ Un pont est donc représenté par une structure `bridge(Taille, Origine, Destina
 
 Les coordonnées :
   - commencent à `(0, 0)`, qui est la case en haut à gauche du casse-tête,
-  - incrémente vers la droite pour le premier composant, donc `(3, 0)` correspond à la case en haut à droite du casse-tête d'exemple,
-  - incrémente vers le bas pour le second composant, donc `(0, 3)` correspond à la case en bas à gauche du casse-tête d'exemple.
+  - incrémentent vers la droite pour le premier composant, donc `(3, 0)` correspond à la case en haut à droite du casse-tête d'exemple,
+  - incrémentent vers le bas pour le second composant, donc `(0, 3)` correspond à la case en bas à gauche du casse-tête d'exemple.
 
 On a les contraintes suivantes pour chaque pont :
 
-- leur taille ne peut être que simple ou double
-- ils doivent partir d'une case dans le casse-tête, et arriver à une case dans le casse-tête
-- ils doivent être droits (soit verticaux, soit horizontaux)
-- ils ne peuvent aller que vers la droite ou vers le bas
+- leur taille ne peut être que simple ou double,
+- ils doivent partir d'une case dans la grille, et arriver à une case dans la grille,
+- ils doivent être droits (soit verticaux, soit horizontaux),
+- ils ne peuvent aller que vers la droite ou vers le bas.
 
 Les ponts suivants sont donc invalides pour un casse-tête de taille 4 :
 
@@ -115,7 +115,7 @@ Le fichier `correction.pl` sera utilisé pour l'évaluation des fonctionnalités
 Définir une relation `puzzle_valid/1` qui détermine la validité d'un casse-tête, représenté par une grille.
 Un casse-tête est valide si :
 
-- il est représenté par une grille de taille `NxN` pour un certain `N`
+- il est représenté par une grille de taille `NxN` pour un certain `N`,
 - chaque case est un nombre, étant soit 0 pour représenter de l'eau, soit un entier positif inférieur ou égal à 8 pour représenter une île.
 
 ## Vérifier la légalité d'une solution : `solution_legal/2`
@@ -123,11 +123,11 @@ Un casse-tête est valide si :
 Définir une relation `solution_legal/2` qui détermine si une solution est *légale*, c'est-à-dire qu'elle est construite de la bonne façon, mais qu'on ne vérifie pas que c'est une solution à un casse-tête en particulier.
 Concrètement, une solution est légale si :
 
-- c'est une suite de ponts représentés par des structures `bridge(Taille, Origine, Destination)` décrite ci-dessus
-- les ponts sont droits (soit verticaux, soit horizontaux)
-- les ponts sont dans les bornes
-- les ponts ont des tailles valides (soit 1, soit 2).
-- les ponts ne sont représentés que de gauche à droite ou de haut en bas
+- c'est une suite de ponts représentés par des structures `bridge(Taille, Origine, Destination)` décrite ci-dessus,
+- les ponts sont droits (soit verticaux, soit horizontaux),
+- les ponts sont dans les bornes,
+- les ponts ont des tailles valides (soit 1, soit 2),
+- les ponts ne sont représentés que de gauche à droite ou de haut en bas.
 
 La relation `solution_legal/2` est utilisée comme ceci : `solution_legal(N, Solution)`, où `N` est la taille du casse-tête, et `Solution` est la solution proposée.
 
@@ -174,7 +174,7 @@ Vous devez implémenter votre solution dans le fichier `tp3.ml`. La seule biblio
 
 Votre programme sera évalué en terme de fonctionnalités sur les trois critères suivants.
 
-- Si le programme ne compile pas ou ne roule pas en effectuant les étapes décrites dans "Exécution de la solution", une note de 0 sera attribuée au TP.
+- Si le programme ne charge pas dans `swipl` en faisant `[tp3]`, une note de 0 sera attribuée au TP.
 - Une note sera attribuée en fonction du nombre de tests de la suite de tests publics qui passent.
 - Une note sera attribuée en fonction du nombre de tests de la suite de tests privées qui passent. Assurez-vous donc que votre code soit correct au delà de la suite de tests publics.
 
@@ -184,15 +184,17 @@ Votre programme sera évalué en terme de qualité de code selon les règles de 
 ### Exécution de la solution
 
 Le script `correction.pl` sera utilisé pour la correction.
-En plus des tests décrits plus haut, vous pouvez vérifier que votre implémentation roule bien avec le script de correction.
-Pour ce faire, il faut charger le script de correction dans `swipl` et appeler `report`.
+Vous êtes encouragés à utiliser le script de correction comme guide pour implémenter votre solution.
+Pour exécuter le script de correction, il faut le charger correction dans `swipl` et appeler `report`.
+
+La correction sera effectuée de la façon suivante.
 
 ```sh
 $ git clone https://gitlub.info.uqam.ca/inf6120/242-TP3
 $ cd 242-TP3/
 $ cp /chemin/vers/tp3.pl tp3.pl
 $ swipl
-?- [correction].
+?- [correction]. % cela charge également tp3.pl
 ?- report.
 ```
 
@@ -214,9 +216,9 @@ On vous demande de ne remettre **que** le fichier `tp3.pl`, à l'emplacement pr�
 
 Vérifiez bien les éléments suivants lors de votre remise :
 
-- [ ] Le fichier `tp3.pl` contient votre nom et votre code permanent
-- [ ] Le fichier charge sans erreur ni *warning* dans `swipl` avec la commande `[tp3]`
-- [ ] Le code suit les bonnes pratiques en terme de style
-- [ ] Le code est documenté
-- [ ] Les tests passent en lançant `run_tests.` après avoir chargé votre fichier dans `swipl`
-- [ ] Le script de correction fonctionne comme attendu (cf. plus haut)
+- [ ] Le fichier `tp3.pl` contient votre nom et votre code permanent,
+- [ ] Le fichier charge sans erreur ni *warning* dans `swipl` avec la commande `[tp3]`,
+- [ ] Le code suit les bonnes pratiques en terme de style,
+- [ ] Le code est documenté,
+- [ ] Les tests passent en lançant `run_tests.` après avoir chargé votre fichier dans `swipl`,
+- [ ] Le script de correction fonctionne comme attendu.

@@ -1,6 +1,5 @@
 :- consult(puzzles).
-% :- consult(tp3).
-:- consult(solution).
+:- consult(tp3).
 
 :- discontiguous test/1.
 :- discontiguous test/2.
