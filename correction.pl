@@ -1,3 +1,4 @@
+:- use_module(library(time)).
 :- consult(puzzles).
 :- consult(tp3).
 
