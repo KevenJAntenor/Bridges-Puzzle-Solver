@@ -33,7 +33,7 @@ test(solution_legal, unique) :-
     findall((X, Y),
             solution_legal(2, [bridge(1, (0, 0), (X, Y))]),
             L),
-    list_to_set(L, [(1, 0), (0, 1)]).
+    sort(L, [(0, 1), (1, 0)]).
 
 test(connects).
 test(connects, example1) :- puzzle(example, P), connects(P, bridge(1, (0, 0), (3, 0))).
