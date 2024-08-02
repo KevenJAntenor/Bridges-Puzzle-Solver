@@ -55,7 +55,7 @@ test(no_bridges_intersect, 2) :- no_bridges_intersect([bridge(1, (0, 0), (3, 0))
 test(no_bridges_intersect, 3) :- no_bridges_intersect([bridge(1, (0, 0), (1, 0)), bridge(1, (1, 0), (2, 0))]).
 
 test(islands).
-test(islands, example) :- puzzle(example, P), islands(P, [island(1, 0, 0), island(3, 3, 0), island(2, 0, 3), island(4, 3, 3)]).
+test(islands, example) :- puzzle(example, P), islands(P, Islands), sort(Islands, [island(1, 0, 0), island(2, 0, 3), island(3, 3, 0), island(4, 3, 3)]).
 
 test(island_well_connected).
 test(island_well_connected, 1) :- island_well_connected(island(1, 0, 0), [bridge(1, (0, 0), (3, 0))]).
