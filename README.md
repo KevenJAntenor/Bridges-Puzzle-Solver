@@ -1,4 +1,4 @@
-# Bridges Puzzle Solver in Prolog
+# 🧩🧠 Bridges Puzzle Solver in Prolog
 
 ## 🧩 Description
 This project implements a Prolog-based solver and validator for the "Bridges" puzzle game. The Bridges puzzle is a logic game where the goal is to connect islands with bridges, adhering to specific rules.
